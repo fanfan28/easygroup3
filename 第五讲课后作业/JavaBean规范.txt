@@ -1,12 +1,12 @@
-�ص㣺
-1��javaBean������һ��public����,������һ��û�в����Ĺ��캯��.�˹��캯����ʹ�á�jsp:useBean��ʵ����JavaBean ��ʱ���ã���JavaBean ����û���κι��캯������ϵͳ���Զ�����һ��û���κβ����Ĺ��캯����
+特点：
+1、javaBean必须是一个public的类,必须有一个没有参数的构造函数.此构造函数在使用《jsp:useBean》实例化JavaBean 类时调用，若JavaBean 类内没有任何构造函数，则系统会自动生成一个没有任何参数的构造函数。
 
-2.JavaBeanͨ�� getProperty��ȡ���ԣ�ͨ��setProperty�������ԡ�����ֵxxx��Ӧ��getXxx��setXxx����������ͨ��setXxx ��getXxxx ����������Ҫע����ǣ������ĵ�һ����ĸ��Сд�ģ����������ڵĵ�һ����ĸ�����д�� 
+2.JavaBean通过 getProperty获取属性，通过setProperty设置属性。属性值xxx对应有getXxx和setXxx方法，可以通过setXxx 和getXxxx 来操作。需要注意的是，变量的第一个字母是小写的，但方法名内的第一个字母必须大写。 
 
-3.JavaBean �ڵ����Զ�Ӧ�ö���Ϊ˽�еģ��������Ա�֤���ݵ������Ժͷ�װ��.
+3.JavaBean 内的属性都应该定义为私有的，这样可以保证数据的完整性和封装性.
 
-4.�����Ҫ�ܱ����л�������ʵ��Serializable�ӿ�
+4.类必须要能被序列化，必须实现Serializable接口
 class A implements Serializable{}
 
-
+对应的符合JavaBean规范的Student类（含学号、姓名、性别、专业信息）见：Student.java文件
 
