@@ -1,1 +1,0 @@
-git@gitee.com:network_worker_1767/2048.git
