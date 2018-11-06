@@ -1,0 +1,103 @@
+1.阅读教材P105-P113，翻阅学过的C++课本（如果还在的话），查阅网络上相关资料，回答以下问题：
+1）C/C++中传值方式有哪些？ Java中的传值方式到底有几种？简述值传入和传出的大致细节
+
+C语言中函数参数的传递有：值传递，地址传递，引用传递这三种形式。
+1.值传递:在执行函数体内部的语句时修改定义参数变量的数值并不会改变调用参数表达式的数值。
+2.地址传递：形式参数指针和实际参数指针均指向同一个变量。可以通过的形式参数指针改变实际参数指针所指向的变量内容。
+3.引用传递：形式参数引用和实际参数引用是同一个变量的不同别名。可以通过的形式参数引用改变实际参数引用所指向的变量内容。
+
+
+Java的传值方式有两种：
+1.基本数据类型值传递：
+在执行方法体内部的语句时修改定义参数变量的数值并不会改变调用参数表达式的数值。
+
+举例：
+方法定义语句(定义参数变量):mb_method(int a){a++;}
+main函数中的语句（调用参数表达式）：int i=0;mb_method(i);
+
+
+简述传入和传出的大致细节：Java虚拟机给成员方法mb_method的参数变量a分配一个存储单元，同时将在main成员方法中的变量i的值复制一份给mb_method的参数变量a，此时i和a的值都是0；在执行完语句:”a++;”之后，a=1，而i还是0；方法执行结束，成员方法mb_method的参数a不能再被使用。
+
+
+
+2.引用数据类型值传递：
+在进行参数传递时，将调用参数表达式的引用值赋值给定义参数变量，从而使定义参数变量的值与调用参数表达式的值相同，即调用参数表达式和定义参数变量均指向同一个对象。可以通过定义参数变量的值改变调用参数表达式所指向的对象内容。
+
+举例：
+方法定义语句(定义参数变量):mb_method(J_Time t){t.month++;}(其中J_Time类的对象成员成员域month值为0)
+main函数中的语句（调用参数表达式）：J_Time a=new J_Time();mb_method(a);
+
+简述传入和传出的大致细节：变量a占据一个存储单元。它的值指向类J_Time的实例对象的引用，该实例对象的成员域month的值为0.当进行方法调用mb_method(a)时，Java虚拟机给成员方法mb_method的参数变量t分配一个存储单元，同时将在main成员方法中的调用参数变量a的值复制一份给mb_method的定义参数变量t，二者指向同一个实例对象。因此在执行完mb_method的语句“t.month++;”之后，t.month和a.month的值都为1，方法执行结束，成员方法mb_method的参数t不能再被使用。
+
+
+2）如何实现多态性？使用抽象类实现的多态性和普通类实现的多态性有什么优势？使用接口实现的呢？请给出三组实现代码来举例说明
+
+
+
+
+JAVA: 第一种是方法重载，
+第二种是继承父类进行方法重写(虚方法virtual)，
+第三种是接口实现
+
+方法重载:
+public class J_Student
+{
+    public int m_id; 
+    public int m_age;
+
+    public J_Student( )
+    {
+        mb_setData(2008010400, 19);
+    } 
+    public J_Student( int id, int age )
+    {
+        mb_setData(id, age);
+    }
+
+    public void mb_setData( int id, int age )
+    {
+        m_id = id;
+        m_age = age;
+    } 
+    public void mb_setData( int id )
+    {
+        m_id = id;
+    }
+    public static void main(String args[ ])
+    {
+        J_Student jack = new J_Student( );
+        jack.mb_setData(2008010408);
+        J_Student lisa = new J_Student( );
+        lisa.mb_setData(2008010428, 18);
+        System.out.print("Jack's id is " + jack.m_id);
+        System.out.println(",age is" + jack.m_age);
+        System.out.print("Lisa's id is" + lisa.m_id);
+        System.out.println(",age is" + lisa.m_age);//结果为Jake's id is 2008010408,age is 19;Lisa's id is 2008010428,age is 18
+    }
+
+
+
+继承父类:
+class A  
+{  
+    int i = 100;  
+    void fun()  
+    {  
+        System.out.println(“This is A”);  
+    }  
+}    
+class B extends A  
+{  
+    int m = 1;  
+    void fun()  
+    {      
+        System.out.println(“This is B”);  
+    }  
+}  
+class Test  
+{  
+    public static void main(String[] args)
+{MyShape c=new circle(2.5);
+        
+ System.out.println("半径为:2.5的圆形的周长="+c.getCircumference()+"面积="+c.getArea());
+}
